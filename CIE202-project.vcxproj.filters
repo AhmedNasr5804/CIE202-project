@@ -121,6 +121,9 @@
     <ClCompile Include="collidable.cpp">
       <Filter>Base Classes</Filter>
     </ClCompile>
+    <ClCompile Include="paddle.cpp">
+      <Filter>paddle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -198,6 +201,9 @@
     <ClInclude Include="collidable.h">
       <Filter>Base Classes</Filter>
     </ClInclude>
+    <ClInclude Include="paddle.h">
+      <Filter>paddle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base Classes">
@@ -211,6 +217,9 @@
     </Filter>
     <Filter Include="Bricks Classes">
       <UniqueIdentifier>{5e150dff-8a89-44f3-b58a-731df9cea925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="paddle">
+      <UniqueIdentifier>{edc5f02d-d8fe-4082-aa5d-63356adc2b59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
