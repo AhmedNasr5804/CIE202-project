@@ -2,6 +2,7 @@
 #include "collidable.h"
 #include "gameConfig.h"
 #include "game.h"
+//offff
 
 
 paddle::paddle(point r_uprleft, int r_width, int r_height, game* r_pGame) :
