@@ -16,7 +16,7 @@ game::game()
 	toolbarUpperleft.x = 0;
 	toolbarUpperleft.y = 0;
 
-	gameToolbar = new toolbar(toolbarUpperleft,0,config.toolBarHeight, this);
+	gameToolbar = new toolbar(toolbarUpperleft, 0, config.toolBarHeight, this);
 	gameToolbar->draw();
 
 	//3 - create and draw the grid
@@ -25,13 +25,19 @@ game::game()
 	gridUpperleft.y = config.toolBarHeight;
 	bricksGrid = new grid(gridUpperleft, config.windWidth, config.gridHeight, this);
 	bricksGrid->draw();
-	
+
 	//4- Create the Paddle
 	//TODO: Add code to create and draw the paddle
+	point paddlePos;
+	paddlePos.x = config.windWidth / 2;
+	paddlePos.y = config.paddleAreaHeight + 300;
+	gamePaddle = new paddle(paddlePos, 80, 20, this);
+	gamePaddle->draw();
+	gamePaddle->OnClick(pWind, gamePaddle);
 
 	//5- Create the ball
 	//TODO: Add code to create and draw the ball
-	
+
 	//6- Create and clear the status bar
 	clearStatusBar();
 }
@@ -41,6 +47,7 @@ game::~game()
 	delete pWind;
 	delete gameToolbar;
 	delete bricksGrid;
+	delete gamePaddle;
 }
 
 
@@ -127,7 +134,7 @@ void game::go() const
 
 	//Change the title
 	pWind->ChangeTitle("- - - - - - - - - - Brick Breaker (CIE202-project) - - - - - - - - - -");
-	
+
 	do
 	{
 		printMessage("Ready...");
@@ -137,7 +144,7 @@ void game::go() const
 			//[1] If user clicks on the Toolbar
 			if (y >= 0 && y < config.toolBarHeight)
 			{
-				isExit=gameToolbar->handleClick(x, y);
+				isExit = gameToolbar->handleClick(x, y);
 			}
 		}
 

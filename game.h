@@ -2,7 +2,7 @@
 #include "CMUgraphicsLib\CMUgraphics.h"
 #include "toolbar.h"
 #include "grid.h"
-
+#include "paddle.h"
 
 
 //Main class that coordinates the game operation
@@ -19,7 +19,7 @@ class game
 	/// Add more members if needed
 
 
-	
+	paddle* gamePaddle;
 	window* pWind;	//Pointer to the CMU graphics window
 	toolbar* gameToolbar;
 	grid* bricksGrid;
