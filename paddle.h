@@ -3,8 +3,6 @@
 
 class paddle : public collidable
 {
-	float width;
-	float height;
 	point pos;
 	game* PtoGame;
 
@@ -21,6 +19,6 @@ public:
 	point getPoint();
 	game* getGame();
 
-	void OnClick(window* w, paddle* p);
+	void OnClick(window& w, paddle* p);
 };
 

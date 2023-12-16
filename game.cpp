@@ -26,6 +26,15 @@ game::game()
 	bricksGrid = new grid(gridUpperleft, config.windWidth, config.gridHeight, this);
 	bricksGrid->draw();
 
+	
+
+	//5- Create the ball
+	//TODO: Add code to create and draw the ball
+
+	
+	//6- Create and clear the status bar
+	clearStatusBar();
+
 	//4- Create the Paddle
 	//TODO: Add code to create and draw the paddle
 	point paddlePos;
@@ -33,13 +42,8 @@ game::game()
 	paddlePos.y = config.paddleAreaHeight + 300;
 	gamePaddle = new paddle(paddlePos, 80, 20, this);
 	gamePaddle->draw();
-	gamePaddle->OnClick(pWind, gamePaddle);
+	gamePaddle->OnClick(*pWind, gamePaddle);
 
-	//5- Create the ball
-	//TODO: Add code to create and draw the ball
-
-	//6- Create and clear the status bar
-	clearStatusBar();
 }
 
 game::~game()

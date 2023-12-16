@@ -17,5 +17,6 @@ public:
 	~grid();
 	void draw() const;
 	int addBrick(BrickType brkType, point clickedPoint);
+	int deleteBrick(BrickType brkType, point clickedPoint);
 };
 

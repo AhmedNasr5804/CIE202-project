@@ -2,7 +2,6 @@
 #include "collidable.h"
 #include "gameConfig.h"
 #include "game.h"
-//offff
 
 
 paddle::paddle(point r_uprleft, int r_width, int r_height, game* r_pGame) :
@@ -83,48 +82,51 @@ game* paddle::getGame()
 	return PtoGame;
 }
 
-void paddle::OnClick(window* w, paddle* p)
+void paddle::OnClick(window& w, paddle* p)
 {
 	char cKeyData;
 	keytype kType;
+	w.FlushKeyQueue();
+	w.SetPen(LAVENDER, 1);
+	w.SetBrush(LAVENDER);
 
 	// Loop until there escape is pressed
 	do
 	{
-		w = PtoGame->getWind();
-		w->GetKeyPress(cKeyData);
-		kType = w->GetKeyPress(cKeyData);
-
-		//getting the old point and game pointer of the paddle
-		point prePos = p->getPoint();
-		game* prePtoGame = PtoGame;
+		kType = w.GetKeyPress(cKeyData);
 
 		if (kType == ARROW)
 		{
 			switch (cKeyData)
 			{
 			case 4:	//left Arrow
-				uprLft.x -= 5;
+				if(uprLft.x>10)
+				{
+					p->uprLft.x -= 15;
 
-				//drawing a rectangle that has the same color as the background
-				prePtoGame->getWind()->SetPen(LAVENDER, 1);
-				prePtoGame->getWind()->SetBrush(LAVENDER);
-				prePtoGame->getWind()->DrawRectangle(prePos.x, prePos.y, config.windWidth, prePos.y + p->getHeigth());
+					//drawing a rectangle that has the same color as the background
 
-				p->draw();
+					//w->DrawRectangle(prePos.x, prePos.y, config.windWidth, height);
+					w.DrawRectangle(0, 500, config.windWidth, 380);
+					//w.UpdateBuffer();
+				}
 				break;
 			case 6:	//right Arrow
-				uprLft.x += 5;
+				if (uprLft.x < config.windWidth - width - 10)
+				{
+					p->uprLft.x += 15;
 
-				//drawing a rectangle that has the same color as the background
-				prePtoGame->getWind()->SetPen(LAVENDER, 1);
-				prePtoGame->getWind()->SetBrush(LAVENDER);
-				prePtoGame->getWind()->DrawRectangle(prePos.x, prePos.y, config.windWidth, prePos.y + p->getHeigth());
+					//drawing a rectangle that has the same color as the background
 
-				p->draw();
+					//w->DrawRectangle(prePos.x, prePos.y, config.windWidth, height);
+					w.DrawRectangle(0, 500, config.windWidth, 380);
+					//w.UpdateBuffer();
+				}
 				break;
 			}
 
 		}
+		p->draw();
+		w.UpdateBuffer();
 	} while (kType != ESCAPE);
 }

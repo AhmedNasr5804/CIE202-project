@@ -24,7 +24,7 @@ struct 		//contains all game configurations (MAY be loaded from a configuration 
 
 	int brickWidth = 60;
 	int brickHeight = 30;
-	color gridLinesColor = WHITE;
+	color gridLinesColor = BLACK;
 
 
 	int	iconWidth=70;			//Width of each icon in toolbar 	

@@ -61,27 +61,71 @@ int grid::addBrick(BrickType brkType, point clickedPoint)
 {
 	//TODO:
 	// 1- Check that the clickedPoint is within grid range (and return -1)
-	// 2- Check that the clickedPoint doesnot overlap with an exisiting brick (return 0)
 
-	//Here we assume that the above checks are passed
-	
+
 	//From the clicked point, find out the index (row,col) of the corrsponding cell in the grid
-	int gridCellRowIndex = (clickedPoint.y-uprLft.y) / config.brickHeight;
+	int gridCellRowIndex = (clickedPoint.y - uprLft.y) / config.brickHeight;
 	int gridCellColIndex = clickedPoint.x / config.brickWidth;
 
-	//Now, align the upper left corner of the new brick with the corner of the clicked grid cell
-	point newBrickUpleft;
-	newBrickUpleft.x = uprLft.x + gridCellColIndex * config.brickWidth;
-	newBrickUpleft.y = uprLft.y+ gridCellRowIndex * config.brickHeight;
-
-	switch (brkType)
+	if(clickedPoint.y> config.toolBarHeight && clickedPoint.y < config.paddleAreaHeight+250)
 	{
-	case BRK_NRM:	//The new brick to add is Normal Brick
-		brickMatrix[gridCellRowIndex][gridCellColIndex] = new normalBrick(newBrickUpleft, config.brickWidth, config.brickHeight, pGame);
-		break;
+		if(brickMatrix[gridCellRowIndex][gridCellColIndex] == nullptr)
+		{
+			// 2- Check that the clickedPoint doesnot overlap with an exisiting brick (return 0)
 
-		//TODO: 
-		// handle more types
+				
+			//Now, align the upper left corner of the new brick with the corner of the clicked grid cell
+			point newBrickUpleft;
+			newBrickUpleft.x = uprLft.x + gridCellColIndex * config.brickWidth;
+			newBrickUpleft.y = uprLft.y + gridCellRowIndex * config.brickHeight;
+
+			switch (brkType)
+			{
+			case BRK_NRM:	//The new brick to add is Normal Brick
+				brickMatrix[gridCellRowIndex][gridCellColIndex] = new normalBrick(newBrickUpleft, config.brickWidth, config.brickHeight, pGame);
+				break;
+
+				//TODO: 
+				// handle more types
+			}
+			return 1;
+		}
 	}
-	return 1;
+
+	
+	
+}
+
+int grid::deleteBrick(BrickType brkType, point clickedPoint)
+{
+	//TODO:
+// 1- Check that the clickedPoint is within grid range (and return -1)
+
+
+//From the clicked point, find out the index (row,col) of the corrsponding cell in the grid
+	int gridCellRowIndex = (clickedPoint.y - uprLft.y) / config.brickHeight;
+	int gridCellColIndex = clickedPoint.x / config.brickWidth;
+
+	if (clickedPoint.y > config.toolBarHeight && clickedPoint.y < config.paddleAreaHeight + 250)
+	{
+		if (brickMatrix[gridCellRowIndex][gridCellColIndex] != nullptr)
+		{
+			// 2- Check that the clickedPoint doesnot overlap with an exisiting brick (return 0)
+
+			switch (brkType)
+			{
+			case BRK_NRM:	//The new brick to add is Normal Brick
+				delete brickMatrix[gridCellRowIndex][gridCellColIndex];
+				brickMatrix[gridCellRowIndex][gridCellColIndex] = nullptr;
+				break;
+
+				//TODO: 
+				// handle more types
+			}
+			return 1;
+		}
+	}
+
+
+
 }

@@ -15,6 +15,9 @@ enum BrickType	//add more brick types
 //Base class for all bricks
 class brick :public collidable
 {
+protected:
+	int strength;
+
 public:
 	brick(point r_uprleft, int r_width, int r_height, game* r_pGame);
 
@@ -26,6 +29,7 @@ class normalBrick :public brick
 {
 public:
 	normalBrick(point r_uprleft, int r_width, int r_height, game* r_pGame);
+	~normalBrick();
 	void collisionAction();
 };
 

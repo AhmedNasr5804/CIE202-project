@@ -12,9 +12,20 @@ normalBrick::normalBrick(point r_uprleft, int r_width, int r_height, game* r_pGa
 	brick(r_uprleft, r_width, r_height, r_pGame)
 {
 	imageName = "images\\bricks\\NormalBrick.jpg";
+	strength = 1;
+}
+
+normalBrick::~normalBrick()
+{
 }
 
 void normalBrick::collisionAction()
 {
-	//TODO: Add collision action logic
+	if (strength == 1) {
+		strength -= 1;
+	}
+	if(strength == 0)
+	{
+		strength = 0;
+	}
 }
