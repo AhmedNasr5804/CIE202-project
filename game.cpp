@@ -95,6 +95,10 @@ window* game::getWind() const		//returns a pointer to the graphics window
 	return pWind;
 }
 
+keytype game::Getkeypressed(char& ckeytype) const
+{
+	return  pWind->WaitKeyPress(ckeytype);
+}
 
 
 string game::getSrting() const

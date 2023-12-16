@@ -30,6 +30,7 @@ public:
 
 	clicktype getMouseClick(int& x, int& y) const;//Get coordinate where user clicks and returns click type (left/right)
 	string getSrting() const;	 //Returns a string entered by the user
+	keytype Getkeypressed(char& ckeytype) const;
 
 
 	window* CreateWind(int, int, int, int) const; //creates the game window
